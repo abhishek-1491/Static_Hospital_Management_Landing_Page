@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 100%;
+            height: 80vh;
+            overflow: hidden;
+            position: relative;
+        }
+        .container-slide{
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .container-slide img{
+            width: 100%;
+            /* height: auto; */
+        }
+        .pre, .next{
+            
+            cursor: pointer;
+            position: absolute;
+            top: 48.2%;
+            font-size: 18px;
+            /* border-radius: 15px; */
+            /* transform: rotate(90deg); */
+            background-color: aliceblue;
+            border: none;
+            padding: 10px;
+        }
+        .next{
+            right: 0.6%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Carasol Example</h1>
+    <div class="container">
+        <div class="container-slide">
+            <img src="images/slider.jpg" alt="">
+            <img src="images/slider2.jpg" alt="">
+            <img src="images/slider3.jpg" alt="">
+        </div>
+    </div>
+    <button class="pre" onclick="previousSlide()">Previous</button>
+    <button class="next" onclick="nextSlide()">Next</button>
+</body>
+<script>
+    let index = 0;
+    const slides = document.querySelector('.container-slide');
+    const images = document.querySelectorAll(".container-slide img");
+    const totalslides = images.length;
+    
+    function showslide(){
+        slides.style.transform = `translateX(${-index*100}%)`;
+        
+    }
+    function nextSlide(){
+        index = (index+1)%totalslides;
+        showslide();
+    }
+    function previousSlide(){
+        index = (index-1+totalslides)%totalslides;
+        showslide();
+    }
+    setInterval(nextSlide,3000);
+</script>
+</html>
